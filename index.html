@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最高の漫画への道</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="bg-canvas"></canvas>
+        <div id="glitch-overlay"></div>
+        <div id="transition-overlay"></div>
+
+        <!-- Character Stage -->
+        <div id="character-stage">
+            <div id="char-left" class="char-slot"></div>
+            <div id="char-center" class="char-slot"></div>
+            <div id="char-right" class="char-slot"></div>
+        </div>
+
+        <!-- UI Layer -->
+        <div id="ui-layer">
+            <div id="message-area" class="hidden">
+                <div id="speaker-name"></div>
+                <div id="text-box">
+                    <span id="text-content"></span><span id="cursor">▼</span>
+                </div>
+            </div>
+            <div id="choices-container"></div>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="start-screen">
+            <div class="title-chars">
+                <div class="title-char tc-aoi"></div>
+                <div class="title-char tc-homura"></div>
+                <div class="title-char tc-shizuki"></div>
+                <div class="title-char tc-sui"></div>
+                <div class="title-char tc-akari"></div>
+                <div class="title-char tc-youta"></div>
+            </div>
+            <h1 class="game-title">星嶺学園 漫画研究会<br><span class="title-sub-en">MANGA CREATORS</span></h1>
+            <p class="start-sub">── 最高の漫画を作るため、少年少女はペンを握る ──</p>
+            <div class="start-chars-label">
+                <span style="color:#4af">蒼</span> ×
+                <span style="color:#f64">焔</span> ×
+                <span style="color:#c6f">紫月</span> ×
+                <span style="color:#4fa">翠</span> ×
+                <span style="color:#f8a">灯</span> ×
+                <span style="color:#fa6">陽太</span>
+            </div>
+            <button id="start-btn">START</button>
+        </div>
+
+        <!-- Chapter Title -->
+        <div id="chapter-screen" class="hidden">
+            <div id="chapter-label"></div>
+            <div id="chapter-title"></div>
+        </div>
+
+        <!-- Ending Screen -->
+        <div id="end-screen" class="hidden">
+            <h1 id="end-title"></h1>
+            <p id="end-desc"></p>
+            <div id="end-manga-info"></div>
+            <button id="read-manga-btn" onclick="openMangaViewer()">完成した漫画を読む</button>
+            <button id="restart-btn" onclick="location.reload()">タイトルに戻る</button>
+        </div>
+        <!-- Manga Reader -->
+        <div id="manga-viewer" class="hidden" style="display:none;">
+            <div id="manga-header"></div>
+            <div id="manga-container"></div>
+            <button id="close-manga-btn" onclick="closeMangaViewer()">閉じる</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

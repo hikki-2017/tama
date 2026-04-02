@@ -1,0 +1,548 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+/* ============================
+   BASE
+   ============================ */
+body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background-color: #030308;
+    color: #0ff;
+    font-family: 'Noto Sans JP', sans-serif;
+    overflow: hidden;
+    user-select: none;
+}
+#game-container {
+    position: relative;
+    width: 100vw; height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+}
+#bg-canvas {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1; opacity: 0.5;
+}
+
+/* ============================
+   GLITCH OVERLAY
+   ============================ */
+#glitch-overlay {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 50; pointer-events: none; opacity: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,255,0.03) 2px, rgba(0,255,255,0.03) 4px);
+    mix-blend-mode: screen;
+}
+#glitch-overlay.active {
+    opacity: 1;
+    animation: glitchFlicker 0.15s infinite;
+}
+@keyframes glitchFlicker {
+    0%   { transform: translate(0); filter: hue-rotate(0deg); }
+    20%  { transform: translate(-3px, 2px); filter: hue-rotate(90deg); }
+    40%  { transform: translate(3px, -1px); filter: hue-rotate(180deg); }
+    60%  { transform: translate(-2px, -3px); filter: hue-rotate(270deg); }
+    80%  { transform: translate(2px, 1px); filter: hue-rotate(360deg); }
+    100% { transform: translate(0); }
+}
+
+/* ============================
+   TRANSITION OVERLAY
+   ============================ */
+#transition-overlay {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 40; background: #000;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.6s ease;
+}
+#transition-overlay.fade-in { opacity: 1; }
+
+/* ============================
+   CHARACTER STAGE
+   ============================ */
+#character-stage {
+    position: absolute;
+    bottom: 180px; left: 0; right: 0;
+    height: 50vh; z-index: 5;
+    display: flex; justify-content: center;
+    align-items: flex-end; gap: 30px;
+    pointer-events: none;
+}
+.char-slot {
+    width: 260px; height: 400px;
+    position: relative;
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.5s ease, transform 0.5s ease, filter 0.3s ease;
+}
+.char-slot.visible {
+    opacity: 1; transform: translateY(0);
+}
+.char-slot.speaking {
+    filter: brightness(1.2) drop-shadow(0 0 10px rgba(255,255,255,0.25));
+}
+.char-slot.visible:not(.speaking) {
+    filter: brightness(0.5);
+}
+.char-slot.speaking .char-portrait {
+    animation: charBreathe 2.5s ease-in-out infinite;
+}
+@keyframes charBreathe {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* ============================
+   CHARACTER PORTRAIT
+   ============================ */
+.char-portrait {
+    position: absolute; bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 240px; height: 380px;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+.char-img {
+    width: 100%; height: auto;
+    max-height: 360px;
+    object-fit: contain;
+    object-position: bottom;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+    pointer-events: none;
+}
+.char-nametag {
+    position: absolute; bottom: 8px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem; padding: 4px 16px;
+    border-radius: 3px; white-space: nowrap;
+    z-index: 10; text-align: center; letter-spacing: 0.15em;
+}
+.char-aoi .char-nametag {
+    background: rgba(30,30,40,0.8); color: #aac;
+    border: 1px solid rgba(150,150,200,0.5); box-shadow: 0 0 10px rgba(100,100,150,0.3);
+}
+.char-homura .char-nametag {
+    background: rgba(40,30,20,0.8); color: #dca;
+    border: 1px solid rgba(200,150,100,0.5); box-shadow: 0 0 10px rgba(200,150,80,0.3);
+}
+.char-shizuki .char-nametag {
+    background: rgba(120,50,180,0.5); color: #d8b0ff;
+    border: 1px solid #c6f; box-shadow: 0 0 10px rgba(200,100,255,0.4);
+}
+.char-sui .char-nametag {
+    background: rgba(30,50,60,0.8); color: #8cc;
+    border: 1px solid rgba(100,180,180,0.5); box-shadow: 0 0 10px rgba(80,160,160,0.3);
+}
+/* ── 灯 (AKARI) ── */
+.char-akari .char-nametag {
+    background: rgba(80,30,50,0.8); color: #fac;
+    border: 1px solid rgba(255,150,180,0.5); box-shadow: 0 0 10px rgba(255,130,170,0.4);
+}
+/* ── 陽太 (YOUTA) ── */
+.char-youta .char-nametag {
+    background: rgba(60,40,10,0.8); color: #fc8;
+    border: 1px solid rgba(255,180,80,0.5); box-shadow: 0 0 10px rgba(255,170,60,0.4);
+}
+
+/* Fallback silhouette when char image missing */
+.char-img-fallback {
+    width: 120px; height: 220px;
+    border-radius: 50% 50% 30% 30% / 40% 40% 20% 20%;
+    margin-bottom: 40px;
+    opacity: 0.7;
+}
+.char-aoi .char-img-fallback { background: radial-gradient(ellipse at 50% 30%, #8cf, #2a5a9a 70%); box-shadow: 0 0 30px rgba(74,170,255,0.3); }
+.char-homura .char-img-fallback { background: radial-gradient(ellipse at 50% 30%, #faa, #993320 70%); box-shadow: 0 0 30px rgba(255,100,50,0.3); }
+.char-shizuki .char-img-fallback { background: radial-gradient(ellipse at 50% 30%, #d8b0ff, #6030a0 70%); box-shadow: 0 0 30px rgba(200,100,255,0.3); }
+.char-sui .char-img-fallback { background: radial-gradient(ellipse at 50% 30%, #a0ffc0, #20804a 70%); box-shadow: 0 0 30px rgba(64,250,160,0.3); }
+.char-akari .char-img-fallback { background: radial-gradient(ellipse at 50% 30%, #fac, #a03060 70%); box-shadow: 0 0 30px rgba(255,130,170,0.3); }
+.char-youta .char-img-fallback { background: radial-gradient(ellipse at 50% 30%, #fc8, #906020 70%); box-shadow: 0 0 30px rgba(255,170,60,0.3); }
+
+/* ============================
+   UI LAYER (Cinematic Style)
+   ============================ */
+#ui-layer {
+    position: absolute;
+    width: 92%; max-width: 900px; height: 90%;
+    z-index: 10; display: none;
+    flex-direction: column; justify-content: flex-end;
+    pointer-events: none; padding: 0;
+}
+#message-area {
+    width: 100%; max-width: 100%; margin: 0;
+    pointer-events: auto;
+    transition: opacity 0.5s;
+    border-radius: 0;
+    background: linear-gradient(to bottom, rgba(15,20,30,0.7) 0%, rgba(5,10,20,0.95) 100%);
+    border: none;
+    border-top: 1px solid rgba(200, 220, 255, 0.3);
+    padding: 30px 50px 40px 50px;
+    position: relative; box-shadow: none;
+}
+#speaker-name {
+    position: absolute; top: -38px; left: 40px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem; color: #e0ffff;
+    background: rgba(20, 40, 80, 0.95);
+    display: inline-block; padding: 8px 25px;
+    border: 1px solid rgba(100, 150, 255, 0.4);
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
+    box-shadow: inset 0 2px 5px rgba(255,255,255,0.05);
+    letter-spacing: 2px;
+    transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+.speaker-aoi { color: #8cf !important; border-color: #4af !important; background: rgba(0,50,120,0.85) !important; }
+.speaker-homura { color: #faa !important; border-color: #f64 !important; background: rgba(120,30,10,0.85) !important; }
+.speaker-shizuki { color: #d8b0ff !important; border-color: #c6f !important; background: rgba(80,20,120,0.85) !important; }
+.speaker-sui { color: #a0ffc0 !important; border-color: #4fa !important; background: rgba(10,80,40,0.85) !important; }
+.speaker-sys { color: #ff0 !important; border-color: #ff0 !important; background: rgba(80,80,0,0.85) !important; }
+.speaker-akari { color: #fac !important; border-color: #f8a !important; background: rgba(120,30,60,0.85) !important; }
+.speaker-youta { color: #fc8 !important; border-color: #fa6 !important; background: rgba(100,60,10,0.85) !important; }
+
+#text-box {
+    background: transparent; border: none; box-shadow: none;
+    padding: 0; margin: 0;
+    font-size: 1.3rem; line-height: 1.8;
+    letter-spacing: 0.04em; position: relative;
+    text-shadow: 0 0 3px rgba(0,255,255,0.3);
+    cursor: pointer; white-space: pre-wrap;
+}
+#text-box:hover { border-color: transparent; cursor: pointer; }
+
+#cursor { animation: cursorBlink 1s infinite; color: #0ff; margin-left: 2px; }
+@keyframes cursorBlink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+
+/* ============================
+   CHOICES
+   ============================ */
+#choices-container {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%; max-width: 650px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 15px;
+    pointer-events: auto; z-index: 15;
+}
+.choice-btn {
+    width: 100%;
+    background: linear-gradient(90deg, rgba(10,20,40,0) 0%, rgba(20,40,80,0.8) 50%, rgba(10,20,40,0) 100%);
+    border: none;
+    border-top: 1px solid rgba(100,150,255,0.3);
+    border-bottom: 1px solid rgba(100,150,255,0.3);
+    border-radius: 0;
+    padding: 15px; margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.2rem; color: #0ff;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease; text-align: center;
+    box-shadow: none;
+}
+.choice-btn::before { content: "▶ "; font-size: 0.8em; opacity: 0.6; }
+.choice-btn:hover {
+    background: linear-gradient(90deg, rgba(20,50,100,0) 0%, rgba(40,80,180,0.9) 50%, rgba(20,50,100,0) 100%);
+    border-color: rgba(150,200,255,0.8);
+    transform: none;
+    box-shadow: 0 0 20px rgba(100,150,255,0.2);
+    text-shadow: 0 0 8px #0ff;
+}
+
+/* ============================
+   START SCREEN (Cinematic)
+   ============================ */
+#start-screen {
+    position: absolute; z-index: 20;
+    display: flex; flex-direction: column;
+    justify-content: flex-start; align-items: flex-start;
+    width: 100%; height: 100%;
+    padding: 10%;
+    background: transparent;
+    transition: opacity 1s;
+    text-align: left;
+}
+.title-chars, .start-chars-label { display: none !important; }
+.game-title {
+    font-size: 3.5rem; font-weight: 700; color: #fff;
+    text-align: left; margin: 0;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+    font-family: 'Georgia', serif;
+    line-height: 1.3;
+}
+.title-sub-en {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2rem; color: #0ff; letter-spacing: 0.5em;
+}
+.start-sub {
+    font-size: 1.3rem; color: #8aa;
+    text-align: left;
+    margin-top: 10px; margin-bottom: 50px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+}
+#start-btn {
+    align-self: flex-start;
+    margin-top: 20px; padding: 15px 60px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.3rem; font-weight: normal;
+    color: #fff; cursor: pointer;
+    letter-spacing: 5px;
+    box-shadow: none;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+#start-btn:hover {
+    background: rgba(255,255,255,0.1);
+    transform: none;
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+/* ============================
+   CHAPTER SCREEN
+   ============================ */
+#chapter-screen {
+    position: absolute; z-index: 30;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    transition: opacity 1s;
+}
+#chapter-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem; color: #0ff;
+    letter-spacing: 0.5em; margin-bottom: 12px; opacity: 0.7;
+}
+#chapter-title {
+    font-size: 2.2rem; font-weight: 700; color: #fff;
+    text-shadow: 0 0 30px #0ff; letter-spacing: 0.15em;
+}
+
+/* ============================
+   ENDING SCREEN (fix: scrollable)
+   ============================ */
+.hidden { opacity: 0; pointer-events: none; display: none !important; }
+
+#end-screen {
+    position: absolute; z-index: 20;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    background: rgba(0,3,8,0.93);
+    width: 100%; height: 100%;
+    justify-content: flex-start;
+    padding-top: 6vh;
+    overflow-y: auto;
+    transition: opacity 1s;
+}
+#end-title {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 2.2rem; font-weight: 700;
+    text-shadow: 0 0 20px currentColor; margin-bottom: 20px;
+}
+#end-desc {
+    font-size: 1.05rem; max-width: 580px;
+    line-height: 1.8; margin-bottom: 20px;
+    white-space: pre-wrap; color: #ccc;
+    padding: 0 20px;
+}
+#end-manga-info {
+    width: 100%; display: flex; justify-content: center;
+}
+.end-manga-badge {
+    border: 2px solid; padding: 12px 25px; margin: 10px 0 20px;
+    font-size: 1.1rem; letter-spacing: 0.1em;
+    text-align: center;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+.end-manga-badge small {
+    font-size: 0.8rem; opacity: 0.7; letter-spacing: 0.2em;
+}
+@keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 5px currentColor; }
+    50% { box-shadow: 0 0 20px currentColor; }
+}
+
+#read-manga-btn {
+    margin-top: 10px; padding: 12px 30px; font-size: 1.15rem;
+    background: transparent; color: #fff;
+    border: 2px solid #ff44aa;
+    cursor: pointer; letter-spacing: 0.15em;
+    box-shadow: 0 0 12px rgba(255,68,170,0.4);
+    transition: all 0.3s;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+#read-manga-btn:hover {
+    background: rgba(255,68,170,0.15);
+    box-shadow: 0 0 25px rgba(255,68,170,0.6);
+}
+#restart-btn {
+    margin-top: 12px; margin-bottom: 40px;
+    padding: 10px 30px; font-size: 1rem;
+    background: transparent; color: #888;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer; letter-spacing: 0.15em;
+    transition: all 0.3s;
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+}
+#restart-btn:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.7);
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* ============================
+   MANGA VIEWER
+   ============================ */
+#manga-viewer {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.97);
+    display: flex; flex-direction: column; align-items: center;
+    z-index: 1000; overflow-y: auto; padding: 30px 0;
+}
+#manga-header {
+    text-align: center; margin-bottom: 20px;
+}
+#manga-header h2 {
+    font-size: 1.8rem; margin: 0; letter-spacing: 0.1em;
+}
+#manga-header p {
+    margin: 5px 0 0; font-size: 0.9rem;
+}
+#manga-container {
+    display: flex; flex-direction: column; gap: 0; max-width: 600px; width: 92%;
+}
+
+/* Manga Page Base */
+.manga-page {
+    background: #fff; color: #111; padding: 30px 25px;
+    border-left: 3px solid #333; border-right: 3px solid #333;
+    font-family: 'Noto Sans JP', sans-serif;
+    position: relative;
+}
+.manga-page:first-child { border-top: 3px solid #333; }
+.manga-page:last-child { border-bottom: 3px solid #333; }
+.manga-page + .manga-page { border-top: 2px dashed #ccc; }
+
+/* Cover Page */
+.manga-cover { padding: 0; background: #0a0a0a; }
+.manga-cover-border {
+    border: 3px solid; margin: 20px; padding: 40px 25px;
+    text-align: center; position: relative;
+    background: linear-gradient(180deg, rgba(20,20,30,1), rgba(5,5,10,1));
+}
+.manga-genre-tag {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    padding: 3px 18px; font-size: 0.75rem; color: #000;
+    font-weight: 700; letter-spacing: 0.15em; white-space: nowrap;
+}
+.manga-cover-title {
+    font-size: 2.2rem; color: #fff; margin: 15px 0 5px;
+    font-weight: 700; letter-spacing: 0.1em;
+}
+.manga-cover-subtitle {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem; color: #888; margin: 0 0 20px; letter-spacing: 0.3em;
+}
+.manga-cover-author {
+    font-size: 0.85rem; color: #aaa; margin: 0 0 15px;
+}
+.manga-cover-desc {
+    font-size: 0.9rem; color: #ccc; margin: 0;
+    border-top: 1px solid rgba(255,255,255,0.15); padding-top: 15px;
+}
+
+/* Scene Pages */
+.manga-panels-grid {
+    display: flex; flex-direction: column; gap: 18px;
+}
+.manga-narration {
+    font-size: 0.95rem; line-height: 1.8; color: #222;
+    padding: 8px 12px;
+    border-left: 3px solid #999;
+    background: #f5f5f0;
+    white-space: pre-wrap;
+}
+.manga-balloon {
+    background: #fff; border: 2px solid #333;
+    border-radius: 15px; padding: 12px 18px;
+    font-size: 1rem; line-height: 1.6;
+    position: relative; margin-left: 10px;
+    box-shadow: 2px 2px 0 #ddd;
+    white-space: pre-wrap;
+}
+.manga-speaker {
+    display: block; font-size: 0.75rem; font-weight: 700;
+    color: #666; margin-bottom: 3px; letter-spacing: 0.1em;
+}
+.manga-sfx {
+    font-size: 2rem; font-weight: 900; text-align: center;
+    color: #000; letter-spacing: 0.15em; padding: 15px 0;
+    text-shadow: 2px 2px 0 #ccc;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(180deg, #f8f8f8, #e0e0e0);
+    border: 2px solid #222;
+}
+.manga-silence {
+    text-align: center; font-size: 1.5rem; color: #999;
+    padding: 20px; letter-spacing: 1em;
+}
+
+/* Layout variations */
+.manga-layout-action .manga-sfx { font-size: 2.5rem; background: linear-gradient(180deg, #fff0e0, #ffe0c0); border-color: #c44; }
+.manga-layout-intense .manga-balloon { border-color: #c00; border-width: 3px; }
+.manga-layout-climax .manga-narration { border-left-color: #f64; background: #fff5f0; }
+.manga-layout-quiet .manga-narration { border-left-color: #a080d0; background: #f8f0ff; }
+.manga-layout-tension .manga-balloon { border-color: #808; box-shadow: 3px 3px 0 rgba(128,0,128,0.2); }
+.manga-layout-revelation .manga-sfx { color: #606; background: linear-gradient(180deg, #f0e8ff, #e0d0f8); border-color: #808; }
+.manga-layout-tech .manga-narration { border-left-color: #0a8; background: #f0fff8; font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; }
+.manga-layout-strategy .manga-sfx { color: #084; font-family: 'Share Tech Mono', monospace; background: #e8fff0; border-color: #0a8; }
+.manga-layout-breakthrough .manga-balloon { border-color: #0a8; }
+.manga-layout-warm .manga-narration { border-left-color: #48f; background: #f0f5ff; }
+.manga-layout-lively .manga-balloon { border-color: #f80; box-shadow: 2px 2px 0 rgba(255,136,0,0.2); }
+.manga-layout-emotional .manga-narration { border-left-color: #48f; background: linear-gradient(180deg, #f0f5ff, #e8f0ff); }
+
+/* End Card */
+.manga-endcard { background: #0a0a0a; padding: 0; }
+.manga-endcard-inner {
+    margin: 20px; padding: 30px; text-align: center;
+    border: 2px solid; color: #ccc;
+    font-size: 1rem; line-height: 2;
+    white-space: pre-wrap;
+}
+
+#close-manga-btn {
+    margin-top: 25px; margin-bottom: 40px; padding: 12px 35px; font-size: 1.1rem;
+    background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4);
+    cursor: pointer; letter-spacing: 0.2em;
+    transition: all 0.3s;
+    font-family: 'Noto Sans JP', sans-serif;
+    flex-shrink: 0;
+}
+#close-manga-btn:hover {
+    background: rgba(255,255,255,0.1); border-color: #fff;
+}
+
+/* ============================
+   SPEED / SHAKE EFFECT
+   ============================ */
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.shake-anim { animation: shake 0.1s infinite; }

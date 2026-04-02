@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "best-game",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "D:\\tama\\best_game", "-p", "8090", "-c-1"],
+      "port": 8090
+    }
+  ]
+}

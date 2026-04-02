@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 380" width="240" height="380">
+  <defs>
+    <radialGradient id="you-bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ffaa66" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#2a1a0a" stop-opacity="0.1"/>
+    </radialGradient>
+    <radialGradient id="you-skin" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#f8d0a8"/>
+      <stop offset="100%" stop-color="#e8b890"/>
+    </radialGradient>
+    <linearGradient id="you-hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8a060"/>
+      <stop offset="40%" stop-color="#c07840"/>
+      <stop offset="100%" stop-color="#8a5428"/>
+    </linearGradient>
+    <linearGradient id="you-blazer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2830"/>
+      <stop offset="100%" stop-color="#1c1a24"/>
+    </linearGradient>
+    <radialGradient id="you-eye-iris" cx="45%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#ffc060"/>
+      <stop offset="50%" stop-color="#d08820"/>
+      <stop offset="100%" stop-color="#805010"/>
+    </radialGradient>
+    <filter id="you-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.9  0 0 0 0 0.6  0 0 0 0 0.2  0 0 0 0.35 0" result="colorBlur"/>
+      <feMerge>
+        <feMergeNode in="colorBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="you-shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#402810" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background aura -->
+  <rect width="240" height="380" fill="url(#you-bg)" rx="8"/>
+  <ellipse cx="120" cy="160" rx="90" ry="120" fill="#ffcc88" opacity="0.05"/>
+
+  <!-- Body / Blazer - casual style, slightly open -->
+  <g filter="url(#you-shadow)">
+    <path d="M46,280 Q46,252 72,242 L92,234 Q120,226 148,234 L168,242 Q194,252 194,280 L198,380 L42,380 Z" fill="url(#you-blazer)"/>
+    <!-- Blazer lines - more relaxed -->
+    <path d="M92,234 L106,266 L112,380" fill="none" stroke="#363040" stroke-width="1.3"/>
+    <path d="M148,234 L134,266 L128,380" fill="none" stroke="#363040" stroke-width="1.3"/>
+    <!-- White shirt visible - casual -->
+    <path d="M92,234 L106,266 L116,340 L124,340 L134,266 L148,234 Q134,228 120,227 Q106,228 92,234Z" fill="#f0ece4"/>
+    <!-- Open collar -->
+    <path d="M100,238 L109,254" fill="none" stroke="#dcd4c8" stroke-width="0.8"/>
+    <path d="M140,238 L131,254" fill="none" stroke="#dcd4c8" stroke-width="0.8"/>
+    <!-- Tie - casually knotted but present -->
+    <path d="M116,252 L120,249 L124,252 L121,296 L120,300 L119,296Z" fill="#d08830" opacity="0.8"/>
+  </g>
+
+  <!-- Neck - sturdy -->
+  <path d="M106,218 L106,238 Q120,245 134,238 L134,218 Q126,227 114,227 Z" fill="url(#you-skin)"/>
+  <path d="M112,228 Q120,232 128,228" fill="none" stroke="#d0a480" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Head shape -->
+  <g filter="url(#you-glow)">
+    <ellipse cx="120" cy="158" rx="53" ry="65" fill="url(#you-skin)"/>
+  </g>
+
+  <!-- Ears -->
+  <ellipse cx="68" cy="163" rx="8" ry="12" fill="#e8c098"/>
+  <ellipse cx="68" cy="163" rx="5" ry="8" fill="#dcb488"/>
+  <ellipse cx="172" cy="163" rx="8" ry="12" fill="#e8c098"/>
+  <ellipse cx="172" cy="163" rx="5" ry="8" fill="#dcb488"/>
+
+  <!-- Hair - short, warm brown/orange, natural -->
+  <path d="M68,138 Q66,108 82,90 Q98,76 120,74 Q142,76 158,90 Q174,108 172,138
+           Q170,118 160,105 Q148,92 120,88 Q92,92 80,105 Q70,118 68,138Z"
+        fill="url(#you-hair)"/>
+  <!-- Top volume -->
+  <path d="M72,132 Q70,106 86,88 Q100,76 120,72 Q140,76 154,88 Q170,106 168,132
+           Q168,112 158,98 Q146,84 120,80 Q94,84 82,98 Q72,112 72,132Z"
+        fill="#d09050" opacity="0.7"/>
+
+  <!-- Short side hair -->
+  <path d="M70,134 Q68,150 70,168 Q72,174 74,176" fill="none" stroke="#a06838" stroke-width="7" stroke-linecap="round"/>
+  <path d="M170,134 Q172,150 170,168 Q168,174 166,176" fill="none" stroke="#a06838" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Bangs - casual, slightly tousled but not spiky -->
+  <path d="M76,130 Q82,118 90,126 Q96,112 106,124 Q112,108 120,122 Q128,110 134,124
+           Q140,114 148,126 Q154,118 164,132
+           Q168,115 158,98 Q148,84 120,80 Q92,84 82,98 Q72,115 76,130Z"
+        fill="url(#you-hair)"/>
+  <!-- Tousled detail -->
+  <path d="M90,92 Q95,80 98,86" fill="none" stroke="#c88848" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <path d="M140,94 Q144,82 148,88" fill="none" stroke="#c88848" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Hair highlights -->
+  <path d="M102,84 Q105,98 102,114" fill="none" stroke="#e8c080" stroke-width="2" opacity="0.5"/>
+  <path d="M136,86 Q138,98 134,112" fill="none" stroke="#e8c080" stroke-width="2" opacity="0.5"/>
+  <path d="M118,80 Q120,92 116,108" fill="none" stroke="#f0d0a0" stroke-width="1.5" opacity="0.35"/>
+
+  <!-- Eyebrows - friendly, natural -->
+  <path d="M87,146 Q96,140 108,143" fill="none" stroke="#6a4828" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M132,143 Q144,140 153,146" fill="none" stroke="#6a4828" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Eyes - warm, friendly -->
+  <!-- Left eye -->
+  <g>
+    <ellipse cx="97" cy="162" rx="14" ry="12" fill="#fff"/>
+    <ellipse cx="97" cy="163" rx="10" ry="10" fill="url(#you-eye-iris)"/>
+    <circle cx="97" cy="163" r="5" fill="#302008"/>
+    <circle cx="93" cy="158" r="3" fill="#fff" opacity="0.9"/>
+    <circle cx="100" cy="166" r="1.5" fill="#fff" opacity="0.5"/>
+    <path d="M83,158 Q89,153 97,153 Q105,154 111,159" fill="none" stroke="#4a3018" stroke-width="1.8"/>
+    <path d="M85,166 Q91,171 97,171 Q103,171 109,166" fill="none" stroke="#4a3018" stroke-width="1"/>
+  </g>
+  <!-- Right eye -->
+  <g>
+    <ellipse cx="143" cy="162" rx="14" ry="12" fill="#fff"/>
+    <ellipse cx="143" cy="163" rx="10" ry="10" fill="url(#you-eye-iris)"/>
+    <circle cx="143" cy="163" r="5" fill="#302008"/>
+    <circle cx="139" cy="158" r="3" fill="#fff" opacity="0.9"/>
+    <circle cx="146" cy="166" r="1.5" fill="#fff" opacity="0.5"/>
+    <path d="M129,159 Q135,154 143,153 Q151,153 157,158" fill="none" stroke="#4a3018" stroke-width="1.8"/>
+    <path d="M131,166 Q137,171 143,171 Q149,171 155,166" fill="none" stroke="#4a3018" stroke-width="1"/>
+  </g>
+
+  <!-- Nose -->
+  <path d="M118,178 Q120,182 122,178" fill="none" stroke="#c8a080" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Mouth - friendly, easygoing grin -->
+  <path d="M106,193 Q112,189 120,191 Q128,189 134,193" fill="none" stroke="#b07058" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M109,194 Q120,200 131,194" fill="#c88070" opacity="0.35"/>
+  <!-- Slight teeth -->
+  <path d="M114,195 Q120,197 126,195" fill="#fff" opacity="0.45"/>
+
+  <!-- Blush -->
+  <ellipse cx="85" cy="176" rx="10" ry="5" fill="#e0a080" opacity="0.18"/>
+  <ellipse cx="155" cy="176" rx="10" ry="5" fill="#e0a080" opacity="0.18"/>
+</svg>

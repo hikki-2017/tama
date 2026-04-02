@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 380" width="240" height="380">
+  <defs>
+    <radialGradient id="sui-bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#20a060" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0a2a1a" stop-opacity="0.1"/>
+    </radialGradient>
+    <radialGradient id="sui-skin" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#fce6da"/>
+      <stop offset="100%" stop-color="#ecd4c6"/>
+    </radialGradient>
+    <linearGradient id="sui-hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60c8a0"/>
+      <stop offset="40%" stop-color="#3a9a70"/>
+      <stop offset="100%" stop-color="#206848"/>
+    </linearGradient>
+    <linearGradient id="sui-blazer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#222a30"/>
+      <stop offset="100%" stop-color="#181e24"/>
+    </linearGradient>
+    <radialGradient id="sui-eye-iris" cx="45%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#60e0c0"/>
+      <stop offset="50%" stop-color="#30a080"/>
+      <stop offset="100%" stop-color="#105838"/>
+    </radialGradient>
+    <linearGradient id="sui-tablet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a3a40"/>
+      <stop offset="100%" stop-color="#1a2830"/>
+    </linearGradient>
+    <filter id="sui-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.2  0 0 0 0 0.7  0 0 0 0 0.4  0 0 0 0.35 0" result="colorBlur"/>
+      <feMerge>
+        <feMergeNode in="colorBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="sui-shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#103020" flood-opacity="0.5"/>
+    </filter>
+    <filter id="sui-glass-glare">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background aura -->
+  <rect width="240" height="380" fill="url(#sui-bg)" rx="8"/>
+  <ellipse cx="120" cy="160" rx="90" ry="120" fill="#44ffaa" opacity="0.04"/>
+
+  <!-- Body / Blazer -->
+  <g filter="url(#sui-shadow)">
+    <path d="M52,280 Q52,255 78,245 L96,238 Q120,232 144,238 L162,245 Q188,255 188,280 L192,380 L48,380 Z" fill="url(#sui-blazer)"/>
+    <path d="M96,238 L109,268 L116,380" fill="none" stroke="#2e3a40" stroke-width="1.2"/>
+    <path d="M144,238 L131,268 L124,380" fill="none" stroke="#2e3a40" stroke-width="1.2"/>
+    <!-- White shirt -->
+    <path d="M96,238 L109,268 L118,340 L122,340 L131,268 L144,238 Q132,232 120,231 Q108,232 96,238Z" fill="#eef4f0"/>
+    <path d="M103,240 L110,254" fill="none" stroke="#d0dcd4" stroke-width="0.8"/>
+    <path d="M137,240 L130,254" fill="none" stroke="#d0dcd4" stroke-width="0.8"/>
+    <!-- Tie - neat -->
+    <path d="M116,253 L120,250 L124,253 L121,298 L120,302 L119,298Z" fill="#20a060" opacity="0.85"/>
+  </g>
+
+  <!-- Left arm holding tablet -->
+  <g>
+    <!-- Arm -->
+    <path d="M185,270 Q195,290 190,320 Q188,340 180,355" fill="none" stroke="url(#sui-blazer)" stroke-width="18" stroke-linecap="round"/>
+    <!-- Hand -->
+    <ellipse cx="180" cy="348" rx="8" ry="10" fill="url(#sui-skin)" transform="rotate(-10,180,348)"/>
+    <!-- Tablet -->
+    <rect x="162" y="310" width="36" height="52" rx="3" fill="url(#sui-tablet)" transform="rotate(-5,180,336)"/>
+    <rect x="165" y="314" width="30" height="44" rx="2" fill="#1a3830" transform="rotate(-5,180,336)"/>
+    <!-- Screen content - data lines -->
+    <g transform="rotate(-5,180,336)">
+      <line x1="168" y1="320" x2="190" y2="320" stroke="#40c090" stroke-width="0.8" opacity="0.6"/>
+      <line x1="168" y1="326" x2="185" y2="326" stroke="#40c090" stroke-width="0.8" opacity="0.4"/>
+      <line x1="168" y1="332" x2="192" y2="332" stroke="#40c090" stroke-width="0.8" opacity="0.5"/>
+      <line x1="168" y1="338" x2="182" y2="338" stroke="#40c090" stroke-width="0.8" opacity="0.3"/>
+      <line x1="168" y1="344" x2="188" y2="344" stroke="#40c090" stroke-width="0.8" opacity="0.5"/>
+      <line x1="168" y1="350" x2="186" y2="350" stroke="#40c090" stroke-width="0.8" opacity="0.4"/>
+      <!-- Small chart -->
+      <rect x="170" y="322" width="3" height="8" fill="#40c090" opacity="0.3"/>
+      <rect x="174" y="318" width="3" height="12" fill="#40c090" opacity="0.3"/>
+      <rect x="178" y="324" width="3" height="6" fill="#40c090" opacity="0.3"/>
+    </g>
+    <!-- Screen glow -->
+    <ellipse cx="180" cy="336" rx="20" ry="28" fill="#40ffaa" opacity="0.03" transform="rotate(-5,180,336)"/>
+  </g>
+
+  <!-- Neck -->
+  <path d="M109,220 L109,240 Q120,246 131,240 L131,220 Q125,228 115,228 Z" fill="url(#sui-skin)"/>
+
+  <!-- Head shape -->
+  <g filter="url(#sui-glow)">
+    <ellipse cx="120" cy="160" rx="50" ry="63" fill="url(#sui-skin)"/>
+  </g>
+
+  <!-- Ears -->
+  <ellipse cx="72" cy="164" rx="7" ry="11" fill="#ecd0c0"/>
+  <ellipse cx="72" cy="164" rx="4" ry="7" fill="#e0c0b0"/>
+  <ellipse cx="168" cy="164" rx="7" ry="11" fill="#ecd0c0"/>
+  <ellipse cx="168" cy="164" rx="4" ry="7" fill="#e0c0b0"/>
+
+  <!-- Hair - short bob cut -->
+  <path d="M70,140 Q68,110 84,92 Q100,78 120,76 Q140,78 156,92 Q172,110 170,140
+           Q168,120 160,108 Q148,94 120,90 Q92,94 80,108 Q72,120 70,140Z"
+        fill="url(#sui-hair)"/>
+  <!-- Bob sides - neat, chin-length -->
+  <path d="M70,135 Q68,155 70,178 Q72,188 76,192" fill="none" stroke="#3a9a70" stroke-width="10" stroke-linecap="round"/>
+  <path d="M72,138 Q70,156 72,176 Q74,185 77,188" fill="none" stroke="#50b088" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <path d="M170,135 Q172,155 170,178 Q168,188 164,192" fill="none" stroke="#3a9a70" stroke-width="10" stroke-linecap="round"/>
+  <path d="M168,138 Q170,156 168,176 Q166,185 163,188" fill="none" stroke="#50b088" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Bangs - neat, straight cut -->
+  <path d="M78,132 Q82,120 90,128 Q96,116 106,126 Q112,114 120,124 Q128,114 134,126
+           Q140,116 150,128 Q156,120 162,132
+           Q166,116 158,100 Q148,86 120,82 Q92,86 82,100 Q74,116 78,132Z"
+        fill="url(#sui-hair)"/>
+  <!-- Hair shine -->
+  <path d="M100,88 Q103,100 100,118" fill="none" stroke="#80e0b8" stroke-width="1.5" opacity="0.5"/>
+  <path d="M140,90 Q142,102 138,116" fill="none" stroke="#80e0b8" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Glasses - thin frame -->
+  <g fill="none" stroke="#506860" stroke-width="1.5">
+    <!-- Left lens -->
+    <ellipse cx="97" cy="163" rx="18" ry="14"/>
+    <!-- Right lens -->
+    <ellipse cx="143" cy="163" rx="18" ry="14"/>
+    <!-- Bridge -->
+    <path d="M115,161 Q120,158 125,161"/>
+    <!-- Temple arms -->
+    <path d="M79,160 L72,158"/>
+    <path d="M161,160 L168,158"/>
+  </g>
+  <!-- Lens reflection -->
+  <path d="M86,156 Q90,153 94,155" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.3"/>
+  <path d="M132,156 Q136,153 140,155" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Eyebrows - precise, slightly flat -->
+  <path d="M86,146 Q95,142 108,145" fill="none" stroke="#2a5040" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M132,145 Q145,142 154,146" fill="none" stroke="#2a5040" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Eyes - calm, observant -->
+  <!-- Left eye -->
+  <g>
+    <ellipse cx="97" cy="163" rx="13" ry="11" fill="#fff"/>
+    <ellipse cx="97" cy="164" rx="9" ry="9" fill="url(#sui-eye-iris)"/>
+    <circle cx="97" cy="164" r="4.5" fill="#082820"/>
+    <circle cx="93" cy="160" r="2.5" fill="#fff" opacity="0.9"/>
+    <circle cx="100" cy="167" r="1.2" fill="#fff" opacity="0.5"/>
+    <path d="M84,159 Q90,155 97,155 Q104,155 110,159" fill="none" stroke="#2a4038" stroke-width="1.5"/>
+    <path d="M86,167 Q91,171 97,171 Q103,171 108,167" fill="none" stroke="#2a4038" stroke-width="0.8"/>
+  </g>
+  <!-- Right eye -->
+  <g>
+    <ellipse cx="143" cy="163" rx="13" ry="11" fill="#fff"/>
+    <ellipse cx="143" cy="164" rx="9" ry="9" fill="url(#sui-eye-iris)"/>
+    <circle cx="143" cy="164" r="4.5" fill="#082820"/>
+    <circle cx="139" cy="160" r="2.5" fill="#fff" opacity="0.9"/>
+    <circle cx="146" cy="167" r="1.2" fill="#fff" opacity="0.5"/>
+    <path d="M130,159 Q136,155 143,155 Q150,155 156,159" fill="none" stroke="#2a4038" stroke-width="1.5"/>
+    <path d="M132,167 Q137,171 143,171 Q149,171 154,167" fill="none" stroke="#2a4038" stroke-width="0.8"/>
+  </g>
+
+  <!-- Nose -->
+  <path d="M118,178 Q120,182 122,178" fill="none" stroke="#d0b0a0" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Mouth - calm, slight closed -->
+  <path d="M112,195 Q116,193 120,194 Q124,193 128,195" fill="none" stroke="#c08878" stroke-width="1.3" stroke-linecap="round"/>
+
+  <!-- Subtle blush -->
+  <ellipse cx="86" cy="178" rx="8" ry="4" fill="#e0a0a0" opacity="0.1"/>
+  <ellipse cx="154" cy="178" rx="8" ry="4" fill="#e0a0a0" opacity="0.1"/>
+</svg>

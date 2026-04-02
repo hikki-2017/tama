@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 380" width="240" height="380">
+  <defs>
+    <radialGradient id="shz-bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#9060c0" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#200a30" stop-opacity="0.1"/>
+    </radialGradient>
+    <radialGradient id="shz-skin" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#fce8e0"/>
+      <stop offset="100%" stop-color="#f0d4c8"/>
+    </radialGradient>
+    <linearGradient id="shz-hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d090f0"/>
+      <stop offset="40%" stop-color="#9060c0"/>
+      <stop offset="100%" stop-color="#5a3080"/>
+    </linearGradient>
+    <linearGradient id="shz-hair-shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e0b0ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#9060c0" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="shz-blazer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2240"/>
+      <stop offset="100%" stop-color="#1a1430"/>
+    </linearGradient>
+    <radialGradient id="shz-eye-iris" cx="45%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#d090f0"/>
+      <stop offset="50%" stop-color="#9050b0"/>
+      <stop offset="100%" stop-color="#4a2060"/>
+    </radialGradient>
+    <filter id="shz-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.6  0 0 0 0 0.3  0 0 0 0 0.8  0 0 0 0.35 0" result="colorBlur"/>
+      <feMerge>
+        <feMergeNode in="colorBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shz-shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#301050" flood-opacity="0.5"/>
+    </filter>
+    <radialGradient id="shz-moon" cx="40%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#f0e0ff"/>
+      <stop offset="100%" stop-color="#c090e0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background aura -->
+  <rect width="240" height="380" fill="url(#shz-bg)" rx="8"/>
+  <ellipse cx="120" cy="160" rx="90" ry="120" fill="#cc66ff" opacity="0.04"/>
+
+  <!-- Long hair behind body -->
+  <path d="M55,150 Q48,200 50,260 Q52,310 58,360 L75,380 L55,380 Q45,340 42,290 Q40,240 48,180Z" fill="url(#shz-hair)" opacity="0.85"/>
+  <path d="M185,150 Q192,200 190,260 Q188,310 182,360 L165,380 L185,380 Q195,340 198,290 Q200,240 192,180Z" fill="url(#shz-hair)" opacity="0.85"/>
+  <!-- Hair behind shoulders -->
+  <path d="M65,200 Q60,250 62,320 Q64,350 68,380 L82,380 Q78,340 76,300 Q74,260 75,220Z" fill="#7a48a8" opacity="0.7"/>
+  <path d="M175,200 Q180,250 178,320 Q176,350 172,380 L158,380 Q162,340 164,300 Q166,260 165,220Z" fill="#7a48a8" opacity="0.7"/>
+
+  <!-- Body / Blazer - neat -->
+  <g filter="url(#shz-shadow)">
+    <path d="M52,278 Q52,255 78,245 L95,238 Q120,232 145,238 L162,245 Q188,255 188,278 L192,380 L48,380 Z" fill="url(#shz-blazer)"/>
+    <path d="M95,238 L108,268 L115,380" fill="none" stroke="#3a3050" stroke-width="1.2"/>
+    <path d="M145,238 L132,268 L125,380" fill="none" stroke="#3a3050" stroke-width="1.2"/>
+    <!-- White shirt -->
+    <path d="M95,238 L108,268 L118,330 L122,330 L132,268 L145,238 Q132,232 120,231 Q108,232 95,238Z" fill="#f0ecf4"/>
+    <!-- Collar -->
+    <path d="M103,240 L110,254" fill="none" stroke="#dcd4e4" stroke-width="0.8"/>
+    <path d="M137,240 L130,254" fill="none" stroke="#dcd4e4" stroke-width="0.8"/>
+    <!-- Ribbon/tie -->
+    <path d="M113,252 L120,248 L127,252 L122,260 L120,262 L118,260Z" fill="#9060c0"/>
+    <path d="M118,260 L116,275 L120,278 L124,275 L122,260Z" fill="#7a48a8"/>
+
+    <!-- Moon pin on left lapel -->
+    <g transform="translate(90,262)">
+      <circle cx="0" cy="0" r="5" fill="url(#shz-moon)" opacity="0.9"/>
+      <path d="M-2,-4 A5,5 0 1,1 -2,4 A3.5,3.5 0 1,0 -2,-4Z" fill="#e8d0ff"/>
+      <circle cx="-1" cy="0" r="0.8" fill="#fff" opacity="0.6"/>
+    </g>
+  </g>
+
+  <!-- Neck - slender -->
+  <path d="M109,220 L109,240 Q120,246 131,240 L131,220 Q125,228 115,228 Z" fill="url(#shz-skin)"/>
+
+  <!-- Head shape -->
+  <g filter="url(#shz-glow)">
+    <ellipse cx="120" cy="160" rx="50" ry="63" fill="url(#shz-skin)"/>
+  </g>
+
+  <!-- Ears (partially hidden by hair) -->
+  <ellipse cx="72" cy="165" rx="6" ry="10" fill="#f0d4c4"/>
+  <ellipse cx="168" cy="165" rx="6" ry="10" fill="#f0d4c4"/>
+
+  <!-- Hair main top -->
+  <path d="M70,135 Q68,108 84,90 Q100,74 120,72 Q140,74 156,90 Q172,108 170,135
+           Q168,115 158,102 Q145,88 120,85 Q95,88 82,102 Q72,115 70,135Z"
+        fill="url(#shz-hair)"/>
+  <!-- Hair volume top -->
+  <path d="M74,128 Q72,104 88,86 Q102,74 120,70 Q138,74 152,86 Q168,104 166,128
+           Q166,112 158,98 Q146,84 120,80 Q94,84 82,98 Q74,112 74,128Z"
+        fill="#c080e0" opacity="0.6"/>
+
+  <!-- Side hair flowing over shoulders -->
+  <path d="M72,135 Q68,160 66,190 Q64,215 62,240 Q60,260 58,285" fill="none" stroke="#8050b0" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+  <path d="M74,138 Q70,162 68,192 Q66,218 65,242" fill="none" stroke="#a070d0" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <path d="M168,135 Q172,160 174,190 Q176,215 178,240 Q180,260 182,285" fill="none" stroke="#8050b0" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+  <path d="M166,138 Q170,162 172,192 Q174,218 175,242" fill="none" stroke="#a070d0" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Bangs - elegant, flowing -->
+  <path d="M78,130 Q84,118 92,126 Q98,112 108,124 Q114,108 120,122 Q126,108 132,124
+           Q138,112 148,126 Q154,118 162,130
+           Q166,114 156,96 Q144,82 120,78 Q96,82 84,96 Q74,114 78,130Z"
+        fill="url(#shz-hair)"/>
+  <!-- Elegant side-swept strand -->
+  <path d="M80,125 Q78,135 76,148 Q74,158 73,165" fill="none" stroke="#b878e0" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Hair shine -->
+  <path d="M98,85 Q102,100 100,118" fill="none" stroke="#e0c0ff" stroke-width="1.5" opacity="0.5"/>
+  <path d="M138,87 Q140,100 136,115" fill="none" stroke="#e0c0ff" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Eyebrows - gentle arch -->
+  <path d="M90,148 Q98,143 108,146" fill="none" stroke="#604070" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M132,146 Q142,143 150,148" fill="none" stroke="#604070" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Eyes - elegant, slightly downturned outer corners -->
+  <!-- Left eye -->
+  <g>
+    <ellipse cx="99" cy="163" rx="14" ry="12" fill="#fff"/>
+    <ellipse cx="99" cy="164" rx="10" ry="10" fill="url(#shz-eye-iris)"/>
+    <circle cx="99" cy="164" r="5" fill="#2a1040"/>
+    <circle cx="94" cy="159" r="3" fill="#fff" opacity="0.9"/>
+    <circle cx="102" cy="167" r="1.5" fill="#fff" opacity="0.5"/>
+    <path d="M85,159 Q91,154 99,154 Q107,155 113,160" fill="none" stroke="#3a2050" stroke-width="1.8"/>
+    <path d="M87,167 Q93,172 99,172 Q105,171 111,167" fill="none" stroke="#3a2050" stroke-width="1"/>
+    <!-- Eyelashes - elegant -->
+    <path d="M85,159 Q83,155 81,154" fill="none" stroke="#3a2050" stroke-width="1.2"/>
+    <path d="M87,157 Q85,154 84,153" fill="none" stroke="#3a2050" stroke-width="0.8"/>
+  </g>
+  <!-- Right eye -->
+  <g>
+    <ellipse cx="141" cy="163" rx="14" ry="12" fill="#fff"/>
+    <ellipse cx="141" cy="164" rx="10" ry="10" fill="url(#shz-eye-iris)"/>
+    <circle cx="141" cy="164" r="5" fill="#2a1040"/>
+    <circle cx="136" cy="159" r="3" fill="#fff" opacity="0.9"/>
+    <circle cx="144" cy="167" r="1.5" fill="#fff" opacity="0.5"/>
+    <path d="M127,160 Q133,155 141,154 Q149,154 155,159" fill="none" stroke="#3a2050" stroke-width="1.8"/>
+    <path d="M129,167 Q135,171 141,172 Q147,172 153,167" fill="none" stroke="#3a2050" stroke-width="1"/>
+    <path d="M155,159 Q157,155 159,154" fill="none" stroke="#3a2050" stroke-width="1.2"/>
+    <path d="M153,157 Q155,154 156,153" fill="none" stroke="#3a2050" stroke-width="0.8"/>
+  </g>
+
+  <!-- Nose -->
+  <path d="M118,178 Q120,182 122,178" fill="none" stroke="#d8b8a8" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Mouth - gentle, mature smile -->
+  <path d="M109,195 Q114,192 120,193 Q126,192 131,195" fill="none" stroke="#c08878" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M112,195 Q120,198 128,195" fill="#d8a898" opacity="0.25"/>
+
+  <!-- Blush -->
+  <ellipse cx="87" cy="177" rx="10" ry="5" fill="#e8a8b0" opacity="0.12"/>
+  <ellipse cx="153" cy="177" rx="10" ry="5" fill="#e8a8b0" opacity="0.12"/>
+</svg>

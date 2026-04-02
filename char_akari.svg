@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 380" width="240" height="380">
+  <defs>
+    <radialGradient id="aka-bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#f88aaa" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3a0a1a" stop-opacity="0.1"/>
+    </radialGradient>
+    <radialGradient id="aka-skin" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#fee8e0"/>
+      <stop offset="100%" stop-color="#f0d8d0"/>
+    </radialGradient>
+    <linearGradient id="aka-hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffa8b8"/>
+      <stop offset="40%" stop-color="#f08098"/>
+      <stop offset="100%" stop-color="#d06080"/>
+    </linearGradient>
+    <linearGradient id="aka-blazer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2434"/>
+      <stop offset="100%" stop-color="#1e1828"/>
+    </linearGradient>
+    <radialGradient id="aka-eye-iris" cx="45%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#ffa0c0"/>
+      <stop offset="50%" stop-color="#f06090"/>
+      <stop offset="100%" stop-color="#a03060"/>
+    </radialGradient>
+    <linearGradient id="aka-ribbon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff80a0"/>
+      <stop offset="100%" stop-color="#e04070"/>
+    </linearGradient>
+    <filter id="aka-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.9  0 0 0 0 0.5  0 0 0 0 0.6  0 0 0 0.4 0" result="colorBlur"/>
+      <feMerge>
+        <feMergeNode in="colorBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="aka-shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#601030" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background aura -->
+  <rect width="240" height="380" fill="url(#aka-bg)" rx="8"/>
+  <ellipse cx="120" cy="160" rx="90" ry="120" fill="#ffaacc" opacity="0.05"/>
+
+  <!-- Body / Blazer -->
+  <g filter="url(#aka-shadow)">
+    <path d="M50,278 Q50,255 76,245 L94,238 Q120,232 146,238 L164,245 Q190,255 190,278 L194,380 L46,380 Z" fill="url(#aka-blazer)"/>
+    <path d="M94,238 L108,268 L115,380" fill="none" stroke="#3a3044" stroke-width="1.2"/>
+    <path d="M146,238 L132,268 L125,380" fill="none" stroke="#3a3044" stroke-width="1.2"/>
+    <!-- White shirt -->
+    <path d="M94,238 L108,268 L117,330 L123,330 L132,268 L146,238 Q132,232 120,231 Q108,232 94,238Z" fill="#f4eef2"/>
+    <path d="M102,240 L110,254" fill="none" stroke="#e0d4dc" stroke-width="0.8"/>
+    <path d="M138,240 L130,254" fill="none" stroke="#e0d4dc" stroke-width="0.8"/>
+    <!-- Bow tie -->
+    <path d="M108,250 L120,256 L132,250 L120,252Z" fill="#f08098"/>
+    <path d="M108,258 L120,252 L132,258 L120,256Z" fill="#d06878"/>
+    <circle cx="120" cy="254" r="3" fill="#ff90a8"/>
+
+    <!-- Colorful star accessory on right lapel -->
+    <g transform="translate(152,262)">
+      <path d="M0,-6 L1.5,-2 L6,-2 L2.5,1 L4,5 L0,2.5 L-4,5 L-2.5,1 L-6,-2 L-1.5,-2Z" fill="#ffcc44" opacity="0.85"/>
+      <circle cx="0" cy="0" r="1.5" fill="#fff" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- Neck -->
+  <path d="M109,220 L109,240 Q120,246 131,240 L131,220 Q125,228 115,228 Z" fill="url(#aka-skin)"/>
+
+  <!-- Head shape -->
+  <g filter="url(#aka-glow)">
+    <ellipse cx="120" cy="160" rx="50" ry="63" fill="url(#aka-skin)"/>
+  </g>
+
+  <!-- Ears -->
+  <ellipse cx="72" cy="164" rx="7" ry="11" fill="#f4d4c8"/>
+  <ellipse cx="72" cy="164" rx="4" ry="7" fill="#ecc8bc"/>
+  <ellipse cx="168" cy="164" rx="7" ry="11" fill="#f4d4c8"/>
+  <ellipse cx="168" cy="164" rx="4" ry="7" fill="#ecc8bc"/>
+
+  <!-- Hair back/sides - wavy, past shoulders -->
+  <path d="M65,145 Q60,175 62,210 Q64,235 68,250" fill="none" stroke="#d06878" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+  <path d="M175,145 Q180,175 178,210 Q176,235 172,250" fill="none" stroke="#d06878" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Hair main -->
+  <path d="M70,136 Q68,108 84,90 Q100,76 120,74 Q140,76 156,90 Q172,108 170,136
+           Q168,118 158,104 Q146,90 120,86 Q94,90 82,104 Q72,118 70,136Z"
+        fill="url(#aka-hair)"/>
+  <!-- Volume -->
+  <path d="M74,130 Q72,106 88,88 Q102,76 120,72 Q138,76 152,88 Q168,106 166,130
+           Q166,114 156,100 Q144,86 120,82 Q96,86 84,100 Q74,114 74,130Z"
+        fill="#ffb0c0" opacity="0.6"/>
+
+  <!-- Side hair -->
+  <path d="M72,136 Q68,158 68,180 Q68,200 70,218" fill="none" stroke="#e88098" stroke-width="8" stroke-linecap="round"/>
+  <path d="M168,136 Q172,158 172,180 Q172,200 170,218" fill="none" stroke="#e88098" stroke-width="8" stroke-linecap="round"/>
+  <!-- Wavy detail -->
+  <path d="M70,160 Q66,170 70,180 Q74,190 70,200" fill="none" stroke="#f0a0b0" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+  <path d="M170,160 Q174,170 170,180 Q166,190 170,200" fill="none" stroke="#f0a0b0" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Bangs - cute, slightly bouncy -->
+  <path d="M78,130 Q84,116 92,126 Q98,110 108,124 Q114,106 120,120 Q126,106 132,124
+           Q138,110 148,126 Q154,116 162,130
+           Q166,114 156,96 Q146,84 120,80 Q94,84 84,96 Q74,114 78,130Z"
+        fill="url(#aka-hair)"/>
+
+  <!-- Hair ribbon - on right side -->
+  <g transform="translate(160,120) rotate(-15)">
+    <!-- Ribbon loops -->
+    <path d="M0,0 Q12,-12 18,-4 Q12,0 18,4 Q12,12 0,0Z" fill="url(#aka-ribbon)"/>
+    <path d="M0,0 Q-12,-12 -18,-4 Q-12,0 -18,4 Q-12,12 0,0Z" fill="url(#aka-ribbon)"/>
+    <!-- Ribbon center -->
+    <circle cx="0" cy="0" r="3" fill="#e04070"/>
+    <!-- Ribbon tails -->
+    <path d="M0,2 Q4,14 2,22" fill="none" stroke="#e04070" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M0,2 Q-2,14 -4,20" fill="none" stroke="#d06078" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Hair highlights -->
+  <path d="M100,86 Q103,100 100,116" fill="none" stroke="#ffc8d8" stroke-width="1.5" opacity="0.5"/>
+  <path d="M138,88 Q140,100 136,114" fill="none" stroke="#ffc8d8" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Eyebrows - cheerful, slightly raised -->
+  <path d="M88,146 Q96,140 108,144" fill="none" stroke="#905060" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M132,144 Q144,140 152,146" fill="none" stroke="#905060" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Eyes - bright, large, cheerful -->
+  <!-- Left eye -->
+  <g>
+    <ellipse cx="98" cy="162" rx="15" ry="13" fill="#fff"/>
+    <ellipse cx="98" cy="163" rx="11" ry="11" fill="url(#aka-eye-iris)"/>
+    <circle cx="98" cy="163" r="5.5" fill="#401020"/>
+    <circle cx="93" cy="158" r="3.5" fill="#fff" opacity="0.9"/>
+    <circle cx="101" cy="166" r="2" fill="#fff" opacity="0.6"/>
+    <circle cx="96" cy="168" r="1" fill="#fff" opacity="0.3"/>
+    <path d="M83,158 Q89,153 98,153 Q107,153 113,158" fill="none" stroke="#603040" stroke-width="1.8"/>
+    <path d="M85,167 Q91,173 98,173 Q105,173 111,167" fill="none" stroke="#603040" stroke-width="1"/>
+    <!-- Eyelashes -->
+    <path d="M83,158 Q81,155 79,154" fill="none" stroke="#603040" stroke-width="1.2"/>
+    <path d="M85,156 Q84,153 82,152" fill="none" stroke="#603040" stroke-width="0.8"/>
+  </g>
+  <!-- Right eye -->
+  <g>
+    <ellipse cx="142" cy="162" rx="15" ry="13" fill="#fff"/>
+    <ellipse cx="142" cy="163" rx="11" ry="11" fill="url(#aka-eye-iris)"/>
+    <circle cx="142" cy="163" r="5.5" fill="#401020"/>
+    <circle cx="137" cy="158" r="3.5" fill="#fff" opacity="0.9"/>
+    <circle cx="145" cy="166" r="2" fill="#fff" opacity="0.6"/>
+    <circle cx="140" cy="168" r="1" fill="#fff" opacity="0.3"/>
+    <path d="M127,158 Q133,153 142,153 Q151,153 157,158" fill="none" stroke="#603040" stroke-width="1.8"/>
+    <path d="M129,167 Q135,173 142,173 Q149,173 155,167" fill="none" stroke="#603040" stroke-width="1"/>
+    <path d="M157,158 Q159,155 161,154" fill="none" stroke="#603040" stroke-width="1.2"/>
+    <path d="M155,156 Q156,153 158,152" fill="none" stroke="#603040" stroke-width="0.8"/>
+  </g>
+
+  <!-- Nose -->
+  <path d="M118,178 Q120,182 122,178" fill="none" stroke="#d8b8a8" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Mouth - bright energetic smile, open -->
+  <path d="M106,192 Q112,188 120,190 Q128,188 134,192" fill="none" stroke="#c07068" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M109,193 Q120,200 131,193" fill="#e0908a" opacity="0.4"/>
+  <!-- Teeth -->
+  <path d="M113,194 Q120,196 127,194" fill="#fff" opacity="0.6"/>
+  <!-- Open mouth shadow -->
+  <path d="M112,196 Q120,201 128,196" fill="#a05050" opacity="0.2"/>
+
+  <!-- Blush - more prominent for cheerful character -->
+  <ellipse cx="84" cy="177" rx="11" ry="5" fill="#f0a0a0" opacity="0.2"/>
+  <ellipse cx="156" cy="177" rx="11" ry="5" fill="#f0a0a0" opacity="0.2"/>
+</svg>
